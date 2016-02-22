@@ -1,5 +1,7 @@
 # reportslack
 
+[![Build Status](https://travis-ci.org/ncorrare/reportslack.svg?branch=master)](https://travis-ci.org/ncorrare/reportslack)
+
 #### Table of Contents
 
 1. [Overview](#overview)
