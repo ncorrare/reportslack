@@ -31,39 +31,29 @@ This module configures a Puppet Enterprise custom report processor that sends no
 
 ### Setup Requirements 
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
+The module needs pluginsync enabled. It also requires a manual restart of the pe-puppetserver that I've purposely left out of the Puppet code.
 ### Beginning with reportslack
 
 <a href="https://slack.com/oauth/authorize?scope=incoming-webhook&client_id=2176880835.22484045430"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"></a>
 
-Click on the button above to obtain the Webhook URL required to start getting notifications in your channel.
+Set up an Incoming Webhook on Slack.
+
 Then simply classify your PE Master group with the reportslack class, setting the webhook_url and channel variable as you got from Slack. 
 
+You should get notifications similar to the following in the Slack channel you've chosen:
+<img alt="Example image" src="https://raw.githubusercontent.com/ncorrare/reportslack/master/example.png">
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
-
-## Reference
-
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+Look at tests/init.pp for an example implementation.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module has only been tested with Puppet Enterprise
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Regular rules apply, fork & PR.
 
-## Release Notes/Contributors/Etc **Optional**
+## Thanks
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+Thanks to dylanratcliffe and jamtur01 for their code examples!
