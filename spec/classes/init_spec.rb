@@ -10,9 +10,9 @@ describe 'reportslack', :type => :class do
 			should contain_package('slack-notifier') 
 			should contain_file('/etc/puppet/slack.yaml').with ({
 				'content' => "---\nwebhook_url: \"https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX\"\nchannel: \"#default\"\n",
-				'owner' => 'root',
+				'owner' => 'pe-puppet',
 				'mode' => '0644',
-				'group' => 'root',
+				'group' => 'pe-puppet',
 			})
 			should contain_ini_setting('enable_reports').with({
 				'section' => 'agent',
