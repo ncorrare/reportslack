@@ -1,11 +1,12 @@
 {
   "name": "ncorrare-reportslack",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "ncorrare",
   "summary": "A custom reports processor to send notifications to a Slack channel",
   "license": "Apache-2.0",
   "source": "https://github.com/ncorrare/reportslack",
   "project_page": "https://github.com/ncorrare/reportslack",
+  "tags": ["slack", "chatops", "report", "puppetdb", "notifications"],
   "issues_url": "https://github.com/ncorrare/reportslack/issues",
   "requirements": [
     { "name": "pe","version_requirement": ">=2015.2.0" }
