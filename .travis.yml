@@ -1,14 +1,13 @@
 ---
 language: ruby
-before_script:
-  - puppet module generate user-module --skip-interview
-sudo: false
-env:
-  - PUPPET_GEM_VERSION="~> 4.1.0"
-  - PUPPET_GEM_VERSION="~> 4.2.0"
-rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
-  - 2.2
-script: ./test.sh
+bundler_args: --without system_tests
+script: "bundle exec rake validate && bundle exec rake lint && bundle exec rake spec SPEC_OPTS='--format documentation'"
+matrix:
+  fast_finish: true
+  include:
+  - rvm: 2.1.8
+    env: PUPPET_GEM_VERSION="~> 4.3"
+  - rvm: 2.1.6
+    env: PUPPET_GEM_VERSION="~> 4.2"
+notifications:
+  email: nicolas@corrarello.com
