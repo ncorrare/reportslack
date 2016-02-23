@@ -1,6 +1,6 @@
 {
   "name": "ncorrare-reportslack",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "author": "ncorrare",
   "summary": "A custom reports processor to send notifications to a Slack channel",
   "license": "Apache-2.0",
