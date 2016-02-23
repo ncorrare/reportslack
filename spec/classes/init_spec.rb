@@ -30,4 +30,18 @@ describe 'reportslack', :type => :class do
   describe 'without parameters' do
 	  it { should_not compile }
   end
+  describe 'with invalid url' do
+                let (:params) {  {
+                        :webhook => 'https://www.google.com',
+                        :channel => '#default',
+                } }
+		it { should_not compile }
+  end
+  describe 'with invalid channel' do
+                let (:params) {  {
+                        :webhook => 'https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX',
+                        :channel => 'default',
+                } }
+		it { should_not compile }
+  end
 end
