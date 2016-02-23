@@ -1,6 +1,7 @@
 # reportslack
 
 [![Build Status](https://travis-ci.org/ncorrare/reportslack.svg?branch=master)](https://travis-ci.org/ncorrare/reportslack)
+[![Coverage Status](https://coveralls.io/repos/github/ncorrare/reportslack/badge.svg?branch=master)](https://coveralls.io/github/ncorrare/reportslack?branch=master)
 
 #### Table of Contents
 
