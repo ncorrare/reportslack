@@ -7,7 +7,10 @@ describe 'reportslack', :type => :class do
                 } }
 		it { 
 			should create_class('reportslack') 
-			should contain_package('slack-notifier') 
+			should contain_package('slack-notifier').with ({
+				'ensure' => 'latest',
+				'provider' => 'puppetserver_gem',
+			})
 			should contain_file('/etc/puppet/slack.yaml').with ({
 				'content' => "---\nwebhook_url: \"https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX\"\nchannel: \"#default\"\n",
 				'owner' => 'pe-puppet',
@@ -18,13 +21,15 @@ describe 'reportslack', :type => :class do
 				'section' => 'agent',
 				'setting' => 'report',
 				'value' => 'true',
+				'path' => '/etc/puppet/puppet.conf',
 			})
 			should contain_ini_subsetting('slack_report_handler').with({
 				'section' => 'master',
 				'setting' => 'reports',
 				'subsetting' => 'slack',
 				'subsetting_separator' => ',',
-			})
+				'path' => '/etc/puppet/puppet.conf',
+			}).that_requires('Ini_Setting[enable_reports]')
 		}
   end
   describe 'without parameters' do
