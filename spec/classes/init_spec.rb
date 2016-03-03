@@ -6,6 +6,7 @@ describe 'reportslack', :type => :class do
                         :channel => '#default',
                 } }
 		it { 
+			should compile
 			should create_class('reportslack') 
 			should contain_package('slack-notifier').with ({
 				'ensure' => 'latest',
@@ -32,6 +33,7 @@ describe 'reportslack', :type => :class do
 			}).that_requires('Ini_Setting[enable_reports]')
 		}
   end
+
   describe 'without parameters' do
 	  it { should_not compile }
   end
@@ -42,6 +44,20 @@ describe 'reportslack', :type => :class do
                 } }
 		it { should_not compile }
   end
+  describe 'with url only' do
+                let (:params) {  {
+                        :webhook => 'https://www.google.com',
+                } }
+		it { should_not compile }
+  end
+  describe 'with channel only' do
+                let (:params) {  {
+                        :channel => '#default',
+                } }
+		it { should_not compile }
+  end
+
+
   describe 'with invalid channel' do
                 let (:params) {  {
                         :webhook => 'https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX',
