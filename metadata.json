@@ -1,6 +1,6 @@
 {
   "name": "ncorrare-reportslack",
-  "version": "1.0.1",
+  "version": "1.0.22",
   "author": "ncorrare",
   "summary": "A custom reports processor to send notifications to a Slack channel",
   "license": "Apache-2.0",
@@ -15,12 +15,12 @@
         }
        ],
   "requirements": [
-    { "name": "pe","version_requirement": [">=2015.2.0","<2016.1"] }
+    { "name": "pe","version_requirement": " >=2015.2.0 < 2016.1" }
   ],
   "dependencies": [
-    { "name":"puppetlabs-stdlib","version_requirement":">= 1.0.0",
-      "name":"puppetlabs-inifile","version_requirement":">=1.4.0",
-      "name":"puppetlabs-puppetserver_gem","version_requirement":">=0.1.0"}
+    { "name":"puppetlabs-stdlib","version_requirement":"4.x",
+      "name":"puppetlabs-inifile","version_requirement":"1.X",
+      "name":"puppetlabs-puppetserver_gem","version_requirement":"0.X"}
   ]
 }
 
