@@ -6,4 +6,3 @@ SimpleCov.formatter = Coveralls::SimpleCov::Formatter
 SimpleCov.start do
 	  add_filter 'spec/fixtures/modules/'
 end
-at_exit { RSpec::Puppet::Coverage.report! }
