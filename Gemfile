@@ -8,3 +8,4 @@ gem 'facter', '>= 1.7.0'
 gem 'slack-notifier'
 gem 'metadata-json-lint'
 gem 'coveralls', require: false
+gem 'simplecov', :require => false
