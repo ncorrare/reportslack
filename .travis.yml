@@ -1,13 +1,27 @@
 ---
 language: ruby
 bundler_args: --without system_tests
+branches:
+  only: 
+    - master
 script: "bundle exec rake validate && bundle exec rake lint && bundle exec rake spec SPEC_OPTS='--format documentation' && bundle exec rake metadata_lint"
+env:
+  global:
+    - secure: "X/MAdEA1CcAHPm5J6AM2d6R/mcbdg2FG0AR22VKN5VdNhMO/ycKofcygzQncur+bdUmUwQODtxWz4PMkS2m/u5X2vr7wcD+r96OuuFIkdsQZo4+RgRBAtKQda3pGNH3iy101VwA43Efv+VuE8L+p35+X/mQw4RqYPgzO994//flsBnVAqJN9D9QNY1EaQeZbD9BoAfPpid7DEZojtEj9e9BrcYX8okNnX96IZFkXQqjhF0coolhL/wht8EwbsM0OpwjoWCURPynk4f5Uz7lEWJSnPyspyZNXJyra9Dh1rVmgtk+cBbTmH7Gw/89yEKhQL4i7W1omtc6M0vH31x6Af/Mh5CENCfUebkqNGnIQzF41yAZ97CsIImTPA5FjGXde5oLx/daPt0MElid/6YfE4P+4FSv0++iWU/Bfd3efgysInkGECMt8yXkvUqG1314impzKAcnHw5shljvmqRNBtBQLHjQTE7mchKTZsSdadI/HoIMAS0v49JWM9GlDIUkf72v8JWbgpUqHI5HfXXGQP3ViUVlaOgOGFOjR0kbN8NTKkdLSfJwPvWeKLLQY85lERR2/jAKlrI054Q8TGkynRsw6G3vdm9T8njtBnqhoAcen05H3qxY/Tm+MUY8dChRh+3uXV5wECx0pU9ml0Z9QLht2njV+PDfh1J5F27wAQUU="
+    - secure: "CH20wPlUZ3Zt0RB6Ud6a9zumXKoU0hP9twq9bcQUaEcpmWl9c1vxVCOQuzzOxHCHDRN3XW7nUI3BGqnF14rWfEUyzcJ5eIg6zcJa7jmkEFZGl3/F1Y2+KuSmtU/bH/pGjn6M4c/GE1cOOqpYYqVrBXxQ95NKIUC+H56YvQoz62Jz9cTYtvXZ5JEer8QNJGBBO8tb+ADcHuYT/NnsF34JRepO4xM4dpHNTZVvH9jNCDJp5MzbM9OoZ9WegjXi0qT1SfIR8yriTzk9uDqHbIg+SZVVZQHv3fsLsDmw6CNZo+wwb3BVOFKHs8rQl7RN1yr3fbP8KTI/j+lFhPooRvXYQdGO2/WnNe0pcpjTJ3OPeDFW4bzMruxAtRNMFvQcDNxToD3BIaNZjJJM19+jJT1AZLT6228/oTTfBSJ0R9cdCVVzJqlHLHJWw6qpmZP8nz4UTI0xaSi8p+i1Z7GUeWyl/p0FPWF6yS6V8s2WF0WIrwU3i61P7GsYtiWF0L55KwDJE2AIfak9vTjOObneZF0UD4gJ7SmdEyB7+LSmVrw2MySDpaW+V6Jt9f1wS11QaUcNK7n4BGGRpA3btAo1QfSeEic6x6ESXK+ZqfO+qMHOyw/xn0vswEGk+IBIhpz/G+/xJgIxZFuu03xU+djOQj0ttWpFhNpAagt3NPbNeHEXc+A="
+    - secure: "kYfaMLQ2yGhVc4LnOWSm8pLcANvse0mUTkapdZnriZHUARoy0dpYM0Rz75TZ7kMrJJkbKv2nt8CPT7Grmmv3Vjhw6/DUsBPsIovuzKVd9BZJbhqO7fOqe3pvMk8A1+kJkvLWWIwP8ZdQJAeXE/TdXIvJP/RBa1BkxA1EaY4ES+IzI5ZFj9MgwlxKMcIMpOYRF9GK+T/V1a3guH2dsoJ268lSCuWQb4wWcyRABJOSog6717pXgJ1lvIU2+1CSZj6tSPDrU/5fUTfrH3DRYJB8H9BbLAQbpqFagE4JaR6jTpYGFTegae2InNXTBIKiCEMPxr+x7r52a72tK7f8c3MXJvbzPz0vfKXtKXcrvQdX+TF58Hie9zi21P0blhQ4gvdkM6TAtCK7TohPMeRPk471NPSJKuLmIsf0yOLdKYSZq/bahGUB+GZeECMp05QIZYHaVC/FzYHSbFgePtJ0PA+cCOpTcdIJx1d3z4VY4DBRpUdgHvKxLP6/ZwHb1myJZLdBsZTZEWVhKUf6stnEOgyaWSxY2NLpgXIrdazn9CVNCS4EOLH2yZcYj/Jlo9h3fm5TbLPi5TvmblEG2iUj0zoh+YF3qpcNDqlf5G6YPZJ6YSkgpguIjpTt9FyFyEhhBFgnCbBu16yPXCxjynU2FSN6jimonFdI5sy3yIX1y5dp5lw="
+    - BLACKSMITH_FORGE_URL=https://forgeapi.puppetlabs.com
 matrix:
-  fast_finish: true
   include:
   - rvm: 2.1.8
-    env: PUPPET_GEM_VERSION="~> 4.3"
+    env: PUPPET_VERSION="~> 4.4.0"
+  - rvm: 2.1.8
+    env: PUPPET_VERSION="~> 4.3.0" FACTER_VERSION="~> 2.4.0"
   - rvm: 2.1.6
-    env: PUPPET_GEM_VERSION="~> 4.2"
+    env: PUPPET_VERSION="~> 4.2.0" FACTER_VERSION="~> 2.4.0"
 notifications:
   email: nicolas@corrarello.com
+after_success:
+  - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ncorrare/travis-scripts/master/aftersuccessforge.sh"
+  - "chmod a+x /tmp/travis-automerge"
+  - "/tmp/travis-automerge"
