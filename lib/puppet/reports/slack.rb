@@ -21,7 +21,7 @@ Puppet::Reports.register_report(:slack) do
 
 		if (!disabled && self.status != 'unchanged')
 			Puppet.debug "Sending notification for #{self.host} to Slack channel #{SLACK_CHANNEL}"
-			msg = "Puppet run for #{self.host} #{self.status} at #{Time.now.asctime} on #{self.configuration_version} in #{self.environment}. Report available <https://#{Puppet.settings[:server]}/#/node_groups/inventory/node/#{self.host}/reports|here>"
+			msg = "Puppet run for #{self.host} #{self.status} at #{Time.now.asctime} on #{self.configuration_version} in #{self.environment}. Report available <https://#{Puppet.settings[:ca_server]}/#/node_groups/inventory/node/#{self.host}/reports|here>"
 			notifier = Slack::Notifier.new SLACK_WEBHOOK_URL, channel: SLACK_CHANNEL, username: 'Puppet'
 			notifier.ping msg, icon_url: "https://puppetlabs.com/wp-content/uploads/2010/12/PL_logo_vertical_RGB_lg.jpg"
 		end
