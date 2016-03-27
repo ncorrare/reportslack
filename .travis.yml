@@ -4,6 +4,7 @@ bundler_args: --without system_tests
 branches:
   only: 
     - master
+before_script: "mkdir ~/.puppet && curl https://raw.githubusercontent.com/ncorrare/travis-scripts/master/slack.yaml > ~/.puppet/slack.yaml"
 script: "bundle exec rake validate && bundle exec rake lint && bundle exec rake spec SPEC_OPTS='--format documentation' && bundle exec rake metadata_lint"
 env:
   global:

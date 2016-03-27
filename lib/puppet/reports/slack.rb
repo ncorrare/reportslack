@@ -3,7 +3,11 @@ require 'yaml'
 require 'slack-notifier'
 
 Puppet::Reports.register_report(:slack) do
-	configfile = File.join([File.dirname(Puppet.settings[:config]), "slack.yaml"])
+	if (Puppet.settings[:config]) then
+		configfile = File.join([File.dirname(Puppet.settings[:config]), "slack.yaml"])
+	else
+		configfile = "/etc/puppetlabs/puppet/slack.yaml"
+	end
   Puppet.debug "Reading #{configfile}"
 	raise(Puppet::ParseError, "Slack report config file #{configfile} not readable") unless File.exist?(configfile)
 	config = YAML.load_file(configfile)
