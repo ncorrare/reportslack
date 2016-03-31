@@ -12,7 +12,7 @@ class reportslack (
   $webhook,
   $channel,
 ) {
-  validate_re($webhook, 'https:\/\/hooks.slack.com\/T.+\/B.+\/.+', 'The webhook URL is invalid')
+  validate_re($webhook, 'https:\/\/hooks.slack.com\/(services\/)?T.+\/B.+\/.+', 'The webhook URL is invalid')
   validate_re($channel, '#.+', 'The channel should start with a hash sign')
 
   package { 'slack-notifier':
