@@ -4,6 +4,7 @@ describe 'reportslack', :type => :class do
                 let (:params) {  {
                         :webhook => 'https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX',
                         :channel => '#default',
+                        :puppetconsole => 'master.inf.puppetlabs.demo',
                 } }
 		it { 
 			should compile
@@ -13,7 +14,7 @@ describe 'reportslack', :type => :class do
 				'provider' => 'puppetserver_gem',
 			})
 			should contain_file('/etc/puppet/slack.yaml').with ({
-				'content' => "---\nwebhook_url: \"https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX\"\nchannel: \"#default\"\n",
+				'content' => "---\nwebhook_url: \"https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX\"\nchannel: \"#default\"\npuppetconsole: \"master.inf.puppetlabs.demo\"\n",
 				'owner' => 'pe-puppet',
 				'mode' => '0644',
 				'group' => 'pe-puppet',
@@ -37,6 +38,7 @@ describe 'reportslack', :type => :class do
                 let (:params) {  {
                         :webhook => 'https://hooks.slack.com/services/TXXXXX/BXXXXX/XXXXXXXXXX',
                         :channel => '#default',
+                        :puppetconsole => 'master.inf.puppetlabs.demo',
                 } }
 		it { 
 			should compile
@@ -46,7 +48,7 @@ describe 'reportslack', :type => :class do
 				'provider' => 'puppetserver_gem',
 			})
 			should contain_file('/etc/puppet/slack.yaml').with ({
-				'content' => "---\nwebhook_url: \"https://hooks.slack.com/services/TXXXXX/BXXXXX/XXXXXXXXXX\"\nchannel: \"#default\"\n",
+				'content' => "---\nwebhook_url: \"https://hooks.slack.com/services/TXXXXX/BXXXXX/XXXXXXXXXX\"\nchannel: \"#default\"\npuppetconsole: \"master.inf.puppetlabs.demo\"\n",
 				'owner' => 'pe-puppet',
 				'mode' => '0644',
 				'group' => 'pe-puppet',
