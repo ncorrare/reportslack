@@ -46,7 +46,7 @@ Set up an Incoming Webhook on Slack. Use the "Add to slack" button below and fol
 Then simply classify your PE Master group with the reportslack class, setting the webhook_url and channel variable as you got from Slack. 
 
 You should get notifications similar to the following in the Slack channel you've chosen:
-<img alt="Example image" src="https://raw.githubusercontent.com/ncorrare/reportslack/master/example.png">
+<img alt="Example image" width="606" height="182" src="https://raw.githubusercontent.com/ncorrare/reportslack/master/example.png">
 ## Usage
 
 Look at tests/init.pp for an example implementation.
