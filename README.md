@@ -62,4 +62,4 @@ Regular rules apply, fork & PR.
 ## Thanks
 
 Thanks to dylanratcliffe and jamtur01 for their code examples!
-Also thanks to atarinut and markrotton for their PRs.
+Also thanks to atarinut for their PRs.
