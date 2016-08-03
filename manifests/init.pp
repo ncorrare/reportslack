@@ -16,7 +16,7 @@ class reportslack (
   validate_re($webhook, 'https:\/\/hooks.slack.com\/(services\/)?T.+\/B.+\/.+', 'The webhook URL is invalid')
   validate_re($channel, '#.+', 'The channel should start with a hash sign')
 
-  package { 'slack-notifier':
+  package { 'slack-notifier-more-better':
     ensure   => latest,
     provider => 'puppetserver_gem'
   }
@@ -45,6 +45,6 @@ class reportslack (
     group   => 'pe-puppet',
     mode    => '0644',
     content => template('reportslack/slack.yaml.erb'),
-    require => Package['slack-notifier'],
+    require => Package['slack-notifier-more-better'],
   }
 }
