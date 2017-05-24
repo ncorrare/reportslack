@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Wed 2017-05-24 23:33 svarrette>
+# Time-stamp: <Wed 2017-05-24 23:55 svarrette>
 # ------------------------------------------------------------------------------
 # = Class: reportslack::params
 #
@@ -39,8 +39,11 @@ class reportslack::params {
     default => 'slack-notifier',
   }
 
+  $configfile = $::operatingsystem ? {
+    default => "${settings::confdir}/slack.yaml",
+  }
   $configfile_mode = $::operatingsystem ? {
-    default => '0440',
+    default => '0640',
   }
 
   $configfile_owner = $::operatingsystem ? {

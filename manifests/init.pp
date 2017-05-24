@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Wed 2017-05-24 23:49 svarrette>
+# Time-stamp: <Thu 2017-05-25 00:00 svarrette>
 # ------------------------------------------------------------------------------
 # Class reportslack
 #
@@ -72,7 +72,7 @@ inherits reportslack::params
     $owner = $reportslack::params::configfile_owner
     $group = $reportslack::params::configfile_group
   }
-  file { "${settings::confdir}/slack.yaml":
+  file { $reportslack::params::configfile:
     ensure  => $ensure,
     owner   => $owner,
     group   => $group,
