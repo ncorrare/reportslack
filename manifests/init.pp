@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Thu 2017-05-25 00:00 svarrette>
+# Time-stamp: <Thu 2017-05-25 00:58 svarrette>
 # ------------------------------------------------------------------------------
 # Class reportslack
 #
@@ -16,7 +16,7 @@
 # @param icon_url [String] Default: wikipedia logo
 #   Icon that is used for messages from this integration.
 #
-# @author Nicolas Corrarello <nicolas@corrarello.com>
+# @author Nicolas Corrarello <nicolas@corrarello.com>,
 #         Sebastien Varrette aka Falkor <sebastien.varrette@uni.lu>
 #
 # Copyright
