@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Wed 2017-05-24 23:34 svarrette>
+# Time-stamp: <Wed 2017-05-24 23:43 svarrette>
 # ------------------------------------------------------------------------------
 # Class reportslack
 #
@@ -25,11 +25,11 @@
 # Copyright 2016-2017 Nicolas Corrarello, unless otherwise noted.
 #
 class reportslack (
+  String $webhook,
   Enum[
     'present',
     'absent'
   ]      $ensure        = $reportslack::params::ensure,
-  String $webhook,
   String $channel       = $reportslack::params::channel
   String $puppetconsole = $settings::ca_server,
   String $username      = $reportslack::params::username,
