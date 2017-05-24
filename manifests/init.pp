@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Wed 2017-05-24 23:43 svarrette>
+# Time-stamp: <Wed 2017-05-24 23:49 svarrette>
 # ------------------------------------------------------------------------------
 # Class reportslack
 #
@@ -30,7 +30,7 @@ class reportslack (
     'present',
     'absent'
   ]      $ensure        = $reportslack::params::ensure,
-  String $channel       = $reportslack::params::channel
+  String $channel       = $reportslack::params::channel,
   String $puppetconsole = $settings::ca_server,
   String $username      = $reportslack::params::username,
   String $icon_url      = $reportslack::params::icon_url
