@@ -17,12 +17,13 @@ Puppet::Reports.register_report(:slack) do
   # Prepare Constant variables to be used within the process definition
   SLACK_WEBHOOK_URL = @config['webhook_url']
   SLACK_CHANNEL     = @config['channel']
-  SLACK_USERNAME    = (@config['username']      ? @config['username']      : '')
-  SLACK_ICON_URL    = (@config['icon_url']      ? @config['icon_url']      : '')
-  SLACK_ICON_EMOJI  = (@config['icon_emoji']    ? @config['icon_emoji']    : '')
-  PUPPETCONSOLE     = (@config['puppetconsole'] ? @config['puppetconsole'] : '')
-  PUPPETBOARD       = (@config['puppetboard']   ? @config['puppetboard']   : '')
-  FOREMAN           = (@config['foreman']       ? @config['foreman']       : '')
+  SLACK_USERNAME    = @config['username']      || ''
+  SLACK_ICON_URL    = @config['icon_url']      || ''
+  SLACK_ICON_EMOJI  = @config['icon_emoji']    || ''
+  PUPPETCONSOLE     = @config['puppetconsole'] || ''
+  PUPPETBOARD       = @config['puppetboard']   || ''
+  FOREMAN           = @config['foreman']       || ''
+
   DISABLED_FILE = "#{@configfile}.disabled"
 
   def process
