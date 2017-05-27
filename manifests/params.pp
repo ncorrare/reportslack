@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Sat 2017-05-27 13:22 svarrette>
+# Time-stamp: <Sat 2017-05-27 14:40 svarrette>
 # ------------------------------------------------------------------------------
 # = Class: reportslack::params
 #
@@ -27,11 +27,12 @@ class reportslack::params {
   ###########################################
 
   # ensure the presence (or absence) of reportslack
-  $ensure   = 'present'
-  $channel  = '#general'
-  $username = 'Puppet'
-  $icon_url = ''
+  $ensure     = 'present'
+  $channel    = '#general'
+  $username   = 'Puppet'
+  $icon_url   = ''
   # 'https://learn.puppet.com/static/images/logos/Puppet-Logo-Mark-Amber.png'
+  $icon_emoji = ''
 
   #### MODULE INTERNAL VARIABLES  #########
   # (Modify to adapt to unsupported OSes)

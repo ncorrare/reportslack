@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Sat 2017-05-27 13:25 svarrette>
+# Time-stamp: <Sat 2017-05-27 14:45 svarrette>
 # ------------------------------------------------------------------------------
 # Class reportslack
 #
@@ -34,15 +34,20 @@ class reportslack (
   String $channel       = $reportslack::params::channel,
   String $puppetconsole = $settings::ca_server,
   String $username      = $reportslack::params::username,
-  String $icon_url      = $reportslack::params::icon_url
+  String $icon_url      = $reportslack::params::icon_url,
+  String $icon_emoji    = $reportslack::params::icon_emoji
 )
 inherits reportslack::params
 {
   validate_re($webhook, 'https:\/\/hooks.slack.com\/(services\/)?T.+\/B.+\/.+', 'The webhook URL is invalid')
   validate_re($channel, '#.+', 'The channel should start with a hash sign')
 
+  $gem_ensure = $ensure ? {
+    'absent' => $ensure,
+    default  => 'latest',
+  }
   package { 'slack-notify':
-    ensure   => latest,
+    ensure   => $gem_ensure,
     name     => $reportslack::params::gemname,
     provider => 'puppetserver_gem'
   }

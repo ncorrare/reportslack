@@ -1,6 +1,6 @@
 require 'puppet'
 require 'yaml'
-require 'slack-notifier'
+require 'slack-notify'
 
 Puppet::Reports.register_report(:slack) do
   desc "A custom reports processor to send notifications to a Slack channel"
@@ -13,12 +13,14 @@ Puppet::Reports.register_report(:slack) do
   Puppet.debug "Reading #{configfile}"
   raise(Puppet::ParseError, "Slack report config file #{configfile} not readable") unless File.exist?(configfile)
   config = YAML.load_file(configfile)
-  SLACK_WEBHOOK_URL = config['webhook_url']
-  Puppet.debug "Webhook is #{SLACK_WEBHOOK_URL}"
-  SLACK_CHANNEL  = config['channel']
-  SLACK_ICON     = config['icon_url']
-  SLACK_USERNAME = config['username']
-  # "https://puppetlabs.com/wp-content/uploads/2010/12/PL_logo_vertical_RGB_lg.jpg"
+
+  options = {
+    webhook_url: config['webhook_url'],
+    channel:     config['channel']
+  }
+  ['username', 'icon_url', 'icon_emoji', 'link_names'].each do |k|
+    options[k] = config[k] if config[k]
+  end
   PUPPETCONSOLE = config['puppetconsole']
   DISABLED_FILE = File.join([File.dirname(Puppet.settings[:config]), 'slack_disabled'])
 
@@ -26,10 +28,10 @@ Puppet::Reports.register_report(:slack) do
     disabled = File.exists?(DISABLED_FILE)
 
     if (!disabled && self.status != 'unchanged')
-      Puppet.debug "Sending notification for #{self.host} to Slack channel #{SLACK_CHANNEL}"
+      Puppet.debug "Sending notification for #{self.host} to Slack channel #{config['channel']}"
       msg = "Puppet run for #{self.host} #{self.status} at #{Time.now.asctime} on #{self.configuration_version} in #{self.environment}. Report available <https://#{PUPPETCONSOLE}/#/node_groups/inventory/node/#{self.host}/reports|here>"
-      notifier = Slack::Notifier.new SLACK_WEBHOOK_URL, channel: SLACK_CHANNEL, username: SLACK_USERNAME
-      notifier.ping msg, icon_url: SLACK_ICON
+      notifier = Slack::Notifier.new(options)
+      notifier.notify(msg)
     end
   end
 end
