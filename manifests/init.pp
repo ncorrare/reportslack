@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Sat 2017-05-27 14:45 svarrette>
+# Time-stamp: <Sat 2017-05-27 15:41 svarrette>
 # ------------------------------------------------------------------------------
 # Class reportslack
 #
@@ -42,12 +42,12 @@ inherits reportslack::params
   validate_re($webhook, 'https:\/\/hooks.slack.com\/(services\/)?T.+\/B.+\/.+', 'The webhook URL is invalid')
   validate_re($channel, '#.+', 'The channel should start with a hash sign')
 
-  $gem_ensure = $ensure ? {
-    'absent' => $ensure,
-    default  => 'latest',
-  }
+  # $gem_ensure = $ensure ? {
+  #   'absent' => $ensure,
+  #   default  => 'latest',
+  # }
   package { 'slack-notify':
-    ensure   => $gem_ensure,
+    ensure   => $ensure,     # Accelerates the agent process time
     name     => $reportslack::params::gemname,
     provider => 'puppetserver_gem'
   }
