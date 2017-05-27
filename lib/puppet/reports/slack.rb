@@ -38,7 +38,7 @@ Puppet::Reports.register_report(:slack) do
       options[:icon_url]   = SLACK_ICON_URL   unless SLACK_ICON_URL.empty?
       options[:icon_emoji] = SLACK_ICON_EMOJI unless SLACK_ICON_EMOJI.empty?
       # Prepare the message to display
-      msg = "Puppet run for #{self.host} #{self.status} at #{Time.now.asctime} on #{self.configuration_version} in #{self.environment}. Report available "
+      msg = "Puppet run for `#{self.host}` *#{self.status}* at #{Time.now.asctime} on #{self.configuration_version} in environment _#{self.environment}_." #" Report available "
       #Report available <https://#{PUPPETCONSOLE}/#/node_groups/inventory/node/#{self.host}/reports|here>"
       # TODO: adapt the link
       client = SlackNotify::Client.new(options)
