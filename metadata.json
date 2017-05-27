@@ -2,7 +2,7 @@
   "name": "ncorrare-reportslack",
   "version": "1.0.17",
   "author": "Nicolas Corrarello, Sebastien Varrette",
-  "mail": "nicolas@corrarello.com,sebastien.varrette@gmail.com"
+    "mail": "nicolas@corrarello.com,sebastien.varrette@gmail.com",
   "summary": "A custom reports processor to send notifications to a Slack channel",
   "license": "Apache-2.0",
   "source": "https://github.com/ncorrare/reportslack",
