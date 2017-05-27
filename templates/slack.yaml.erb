@@ -1,9 +1,15 @@
 # -*- mode: yaml; -*-
 # Slack Notification plugin
 ---
+# Incoming webhook
 webhook_url: "<%= @webhook %>"
 channel: "<%= @channel %>"
+<% unless @puppetconsole.empty? -%>
 puppetconsole: "<%= @puppetconsole %>"
+<% end -%>
+<% unless @puppetboard.empty? -%>
+puppetboard: "<%= @puppetboard %>"
+<% end -%>
 <% unless @username.empty? -%>
 username: "<%= @username %>"
 <% end -%>

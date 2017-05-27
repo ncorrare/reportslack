@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Sat 2017-05-27 16:54 svarrette>
+# Time-stamp: <Sat 2017-05-27 18:27 svarrette>
 # ------------------------------------------------------------------------------
 # Class reportslack
 #
@@ -14,8 +14,12 @@
 # @param puppetconsole [String]
 # @param username [String] Default: 'Puppet'
 #   Username that this integration will post as.
-# @param icon_url [String] Default: wikipedia logo
+# @param icon_url [String]
 #   Icon that is used for messages from this integration.
+# @param icon_emoji [String] Default
+#   EMoji that is used for messages from this integration.
+# @param puppetboard [String]
+#   base hostname of the puppetboard, typically "<fqdn>:<port>"
 #
 # @author Nicolas Corrarello <nicolas@corrarello.com>,
 #         Sebastien Varrette aka Falkor <sebastien.varrette@gmail.com>
@@ -35,7 +39,8 @@ class reportslack (
   String $puppetconsole = $settings::ca_server,
   String $username      = $reportslack::params::username,
   String $icon_url      = $reportslack::params::icon_url,
-  String $icon_emoji    = $reportslack::params::icon_emoji
+  String $icon_emoji    = $reportslack::params::icon_emoji,
+  String $puppetboard   = $reportslack::params::puppetboard
 )
 inherits reportslack::params
 {
@@ -50,14 +55,6 @@ inherits reportslack::params
     ensure   => $ensure,     # Accelerates the agent process time
     name     => $reportslack::params::gemname,
     provider => 'puppetserver_gem'
-  }
-  $reportslack::params::extra_gems.each |String $gem| {
-    if (!defined(Package[$gem])) {
-      package { $gem:
-        ensure   => 'present',
-        provider => 'puppetserver_gem'
-      }
-    }
   }
 
   ini_setting { 'enable_reports':
