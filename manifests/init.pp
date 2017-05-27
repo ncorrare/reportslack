@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Sat 2017-05-27 15:41 svarrette>
+# Time-stamp: <Sat 2017-05-27 16:54 svarrette>
 # ------------------------------------------------------------------------------
 # Class reportslack
 #
@@ -50,6 +50,14 @@ inherits reportslack::params
     ensure   => $ensure,     # Accelerates the agent process time
     name     => $reportslack::params::gemname,
     provider => 'puppetserver_gem'
+  }
+  $reportslack::params::extra_gems.each |String $gem| {
+    if (!defined(Package[$gem])) {
+      package { $gem:
+        ensure   => 'present',
+        provider => 'puppetserver_gem'
+      }
+    }
   }
 
   ini_setting { 'enable_reports':

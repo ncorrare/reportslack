@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Sat 2017-05-27 14:40 svarrette>
+# Time-stamp: <Sat 2017-05-27 16:47 svarrette>
 # ------------------------------------------------------------------------------
 # = Class: reportslack::params
 #
@@ -39,6 +39,9 @@ class reportslack::params {
   #######################################
   $gemname = $::operatingsystem ? {
     default => 'slack-notify',
+  }
+  $extra_gems = $::operatingsystem ? {
+    default => [ 'yaml' ]
   }
 
   $configfile = $::operatingsystem ? {
