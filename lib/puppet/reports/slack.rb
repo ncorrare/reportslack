@@ -40,7 +40,7 @@ Puppet::Reports.register_report(:slack) do
       options[:icon_emoji] = SLACK_ICON_EMOJI unless SLACK_ICON_EMOJI.empty?
       # Prepare the message to display
       report_url = "https://#{PUPPETCONSOLE}/#/node_groups/inventory/node/#{self.host}/reports" unless PUPPETCONSOLE.empty?
-      report_url = "https://#{PUPPETBOARD}/node/#{self.host}" unless PUPPETBOARD.empty?
+      report_url = "http://#{PUPPETBOARD}/node/#{self.host}" unless PUPPETBOARD.empty?
 
       msg = "Puppet run for `#{self.host}` *#{self.status}* at #{Time.now.asctime} on #{self.configuration_version} in environment _#{self.environment}_. Report available <#{report_url}|here>."
       # TODO: adapt the link
