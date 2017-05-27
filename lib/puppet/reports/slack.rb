@@ -27,7 +27,7 @@ Puppet::Reports.register_report(:slack) do
   def process
     disabled = File.exists?(DISABLED_FILE)
 
-    if (!disabled && self.status != 'unchanged')
+    if (!disabled) # && self.status != 'unchanged')
       Puppet.debug "Sending notification for #{self.host} to Slack channel #{@config['channel']}"
       msg = "Puppet run for #{self.host} #{self.status} at #{Time.now.asctime} on #{self.configuration_version} in #{self.environment}. Report available <https://#{PUPPETCONSOLE}/#/node_groups/inventory/node/#{self.host}/reports|here>"
       notifier = Slack::Notifier.new(options)
