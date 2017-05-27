@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Thu 2017-05-25 00:58 svarrette>
+# Time-stamp: <Sat 2017-05-27 13:25 svarrette>
 # ------------------------------------------------------------------------------
 # Class reportslack
 #
@@ -8,6 +8,7 @@
 # @param webhook [String]
 #   Slack Incoming WebHooks URL -- to be generated from your Slack team App Directory
 #   (Manage / Custom Integrations / Incoming WebHooks)
+# @param ensure  [String] Default: 'ensure'
 # @param channel [String] Default: '#general'
 #   Default channel to send messages to
 # @param puppetconsole [String]
@@ -17,12 +18,12 @@
 #   Icon that is used for messages from this integration.
 #
 # @author Nicolas Corrarello <nicolas@corrarello.com>,
-#         Sebastien Varrette aka Falkor <sebastien.varrette@uni.lu>
+#         Sebastien Varrette aka Falkor <sebastien.varrette@gmail.com>
 #
 # Copyright
 # ---------
 #
-# Copyright 2016-2017 Nicolas Corrarello, unless otherwise noted.
+# Copyright 2016-2017 Nicolas Corrarello, Sebastien Varrette unless otherwise noted.
 #
 class reportslack (
   String $webhook,
@@ -40,9 +41,9 @@ inherits reportslack::params
   validate_re($webhook, 'https:\/\/hooks.slack.com\/(services\/)?T.+\/B.+\/.+', 'The webhook URL is invalid')
   validate_re($channel, '#.+', 'The channel should start with a hash sign')
 
-  package { 'slack-notifier':
+  package { 'slack-notify':
     ensure   => latest,
-    name     => $reportslack::params::packagename,
+    name     => $reportslack::params::gemname,
     provider => 'puppetserver_gem'
   }
 
@@ -78,6 +79,6 @@ inherits reportslack::params
     group   => $group,
     mode    => $reportslack::params::configfile_mode,
     content => template('reportslack/slack.yaml.erb'),
-    require => Package['slack-notifier'],
+    require => Package['slack-notify'],
   }
 }

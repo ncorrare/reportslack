@@ -1,5 +1,5 @@
 # -*- mode: puppet; -*-
-# Time-stamp: <Thu 2017-05-25 01:41 svarrette>
+# Time-stamp: <Sat 2017-05-27 13:22 svarrette>
 # ------------------------------------------------------------------------------
 # = Class: reportslack::params
 #
@@ -30,13 +30,14 @@ class reportslack::params {
   $ensure   = 'present'
   $channel  = '#general'
   $username = 'Puppet'
-  $icon_url = 'https://learn.puppet.com/static/images/logos/Puppet-Logo-Mark-Amber.png'
+  $icon_url = ''
+  # 'https://learn.puppet.com/static/images/logos/Puppet-Logo-Mark-Amber.png'
 
   #### MODULE INTERNAL VARIABLES  #########
   # (Modify to adapt to unsupported OSes)
   #######################################
-  $packagename = $::operatingsystem ? {
-    default => 'slack-notifier',
+  $gemname = $::operatingsystem ? {
+    default => 'slack-notify',
   }
 
   $configfile = $::operatingsystem ? {
