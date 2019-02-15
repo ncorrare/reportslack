@@ -1,7 +1,8 @@
 {
   "name": "ncorrare-reportslack",
   "version": "1.0.17",
-  "author": "ncorrare",
+  "author": "Nicolas Corrarello, Sebastien Varrette",
+    "mail": "nicolas@corrarello.com,sebastien.varrette@gmail.com",
   "summary": "A custom reports processor to send notifications to a Slack channel",
   "license": "Apache-2.0",
   "source": "https://github.com/ncorrare/reportslack",
@@ -18,21 +19,28 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6.0",
-        "7.0"
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7"
       ]
     }
   ],
   "requirements": [
     {
-      "name": "pe",
-      "version_requirement": " >=2015.2.0 < 2016.2.0"
+      "name": "puppet",
+      "version_requirement": ">= 4.7.0 < 5.0.0"
     }
   ],
   "dependencies": [
     {
       "name": "puppetlabs-puppetserver_gem",
-      "version_requirement": "0.X"
+      "version_requirement": ">= 1.0.0 < 2.0.0"
     }
   ]
 }
